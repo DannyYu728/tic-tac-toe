@@ -7,6 +7,7 @@ let left = document.querySelector(".left")
 let right = document.querySelector(".right")
 let play1Score = document.querySelector(".play1")
 let play2Score = document.querySelector(".play2")
+let playTurn = document.querySelector("h3")
 let turn = 0
 let round = 0
 let player1Score = 0
@@ -47,7 +48,7 @@ let nextRound = (map) => {
   map.forEach(function (i, location) {
     map.set(`${location}`, 0)
     game.innerHTML = ""
-    turn = 0
+    // turn = 0
     round += 1
     boxMaker(grid)
   })
@@ -85,6 +86,11 @@ let winnerCheck = (map) => {
 }
 
 let boxMaker = (map) => {
+  if (turn % 2 == 0) {
+    playTurn.innerText = "Reds Turn"
+  } else {
+    playTurn.innerText = "Blue Turn"
+  }
   //Create the 3x3 Grid
   map.forEach((i, location) => {
     let htmlTemplate = `
@@ -99,6 +105,7 @@ let boxMaker = (map) => {
           map.set(`${location}`, 1)
           box.style.backgroundColor = "red"
           turn++
+          playTurn.innerText = "Blue's Turn"
           winnerCheck(map)
         }
       } else {
@@ -106,6 +113,7 @@ let boxMaker = (map) => {
           map.set(`${location}`, 2)
           box.style.backgroundColor = "blue"
           turn++
+          playTurn.innerText = "Red's Turn"
           winnerCheck(map)
         }
       }
