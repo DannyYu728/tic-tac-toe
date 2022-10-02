@@ -9,6 +9,8 @@ html {
   background-color: brown;
   color: aliceblue;
   text-shadow: 5px 5px 5px black;
+  font-family: 'Games', sans-serif;
+
 }
 
 .titleScreen {
@@ -17,6 +19,7 @@ html {
   justify-content: center;
   align-items: center;
   animation: smooth .7s;
+  gap: 20px;
 }
 
 @keyframes smooth {
@@ -36,13 +39,15 @@ h1 {
 }
 
 h5 {
-  font-size:25px;
+  font-size: 25px;
   padding-right: 5px;
 }
 
 p {
   font-size: 20px;
 }
+
+
 
 .main {
   height: 100%;
@@ -67,16 +72,21 @@ p {
 .left,
 .right,
 .mid {
-  width: 32%;
+  width: 33.33%;
   display: flex;
   justify-content: center;
   align-items: baseline;
 }
 
+.left,
+.right {
+  gap: 15px;
+}
+
 .mid {
   flex-direction: column;
   align-items: center;
-  gap: 50px
+  gap: 30px
 }
 
 .game {
@@ -85,6 +95,7 @@ p {
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: black;
+  border: 5px solid black;
 }
 
 .box {
@@ -99,11 +110,157 @@ p {
   display: none
 }
 
-.startButton {
-  background-color: black;
-  border: 2px solid black;
-  border-radius: 10%;
-  padding: 2px;
-  color: white;
-  cursor: crosshair;
+.startButton,
+.resetGame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  background-color: lightgray;
+  text-shadow: -1px -1px black, 1px 1px white;
+  color: gray;
+  border-radius: 7px;
+  box-shadow: 0 4px gray;
+  width: 100px;
+  height: 30px;
 }
+
+.startButton:active,
+.resetGame:active {
+  box-shadow: none;
+  position: relative;
+  top: .2em;
+}
+
+h2,
+h3,
+h4 {
+  display: inline-block;
+  margin: 0;
+  color: rgb(255, 115, 0);
+  font-size: 50px;
+  line-height: 50px;
+  min-width: 50px;
+  outline: none;
+  vertical-align: middle;
+  text-shadow:
+    0 3px 20px red,
+    0 0 20px red,
+    0 0 10px orange,
+    4px -5px 6px yellow,
+    -4px -10px 10px yellow,
+    0 -10px 30px yellow;
+  animation: 2s Blazing infinite alternate linear;
+}
+h4 {
+  font-size: 30px;
+}
+.tie {
+  color: whitesmoke;
+  animation: none;
+}
+@keyframes Blazing {
+  0% {
+    text-shadow: 0 3px 20px red, 0 0 20px red,
+      0 0 10px orange,
+      0 0 0 yellow,
+      0 0 5px yellow,
+      -2px -5px 5px yellow,
+      4px -10px 10px yellow;
+  }
+
+  25% {
+    text-shadow: 0 3px 20px red, 0 0 30px red,
+      0 0 20px orange,
+      0 0 5px yellow,
+      -2px -5px 5px yellow,
+      3px -10px 10px yellow,
+      -4px -15px 20px yellow;
+  }
+
+  50% {
+    text-shadow: 0 3px 20px red, 0 0 20px red,
+      0 -5px 10px orange,
+      -2px -5px 5px yellow,
+      3px -10px 10px yellow,
+      -4px -15px 20px yellow,
+      2px -20px 30px rgba(255, 255, 0, 0.5);
+  }
+
+  75% {
+    text-shadow: 0 3px 20px red, 0 0 20px red,
+      0 -5px 10px orange,
+      3px -5px 5px yellow,
+      -4px -10px 10px yellow,
+      2px -20px 30px rgba(255, 255, 0, 0.5),
+      0px -25px 40px rgba(255, 255, 0, 0)
+  }
+
+  100% {
+    text-shadow: 0 3px 20px red, 0 0 20px red,
+      0 0 10px orange,
+      0 0 0 yellow,
+      0 0 5px yellow,
+      -2px -5px 5px yellow,
+      4px -10px 10px yellow;
+  }
+}
+
+.blue {
+  color: rgb(0, 85, 255);
+  text-shadow:
+    0 3px 20px rgb(4, 4, 193),
+    0 0 20px rgb(5, 5, 217),
+    0 0 10px rgb(0, 94, 255),
+    4px -5px 6px rgb(0, 200, 255),
+    -4px -10px 10px rgb(0, 170, 255),
+    0 -10px 30px rgb(0, 162, 255);
+  animation: 2s Blueing infinite alternate linear;
+}
+
+@keyframes Blueing {
+  0% {
+    text-shadow: 0 3px 20px rgb(34, 0, 255), 0 0 20px rgb(17, 0, 255),
+      0 0 10px rgb(0, 94, 255),
+      0 0 0 rgb(0, 200, 255),
+      0 0 5px rgb(0, 200, 255),
+      -2px -5px 5px rgb(0, 200, 255),
+      4px -10px 10px rgb(0, 200, 255),
+  }
+
+  25% {
+    text-shadow: 0 3px 20px rgb(34, 0, 255), 0 0 20px rgb(17, 0, 255),
+      0 0 20px rgb(0, 94, 255),
+      0 0 5px rgb(0, 200, 255),
+      -2px -5px 5px rgb(0, 200, 255),
+      3px -10px 10px rgb(0, 200, 255),
+      -4px -15px 20px rgb(0, 200, 255),
+  }
+
+  50% {
+    text-shadow: 0 3px 20px rgb(34, 0, 255), 0 0 20px rgb(17, 0, 255),
+      0 -5px 10px rgb(0, 94, 255),
+      -2px -5px 5px rgb(0, 200, 255),
+      3px -10px 10px rgb(0, 200, 255),
+      -4px -15px 20px rgb(0, 200, 255),
+      2px -20px 30px rgba(0, 255, 255, 0.5);
+  }
+
+  75% {
+    text-shadow: 0 3px 20px rgb(34, 0, 255), 0 0 20px rgb(17, 0, 255),
+      0 -5px 10px rgb(0, 94, 255),
+      3px -5px 5px rgb(0, 200, 255),
+      -4px -10px 10px rgb(0, 200, 255),
+      2px -20px 30px rgba(0, 255, 255, 0.5) 0px -25px 40px rgba(255, 255, 0, 0)
+  }
+
+  100% {
+    text-shadow: 0 3px 20px rgb(34, 0, 255), 0 0 20px rgb(17, 0, 255),
+      0 0 10px rgb(0, 94, 255),
+      0 0 0 rgb(0, 200, 255),
+      0 0 5px rgb(0, 200, 255),
+      -2px -5px 5px rgb(0, 200, 255),
+      4px -10px 10px rgb(0, 200, 255),
+  }
+}
+
