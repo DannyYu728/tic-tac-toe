@@ -1,5 +1,45 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 100px;
+  margin: 0;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left, .right, .mid{
+  width: 32%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mid {
+  flex-direction: column;
+  gap: 50px
+}
 .game {
-  width: 200px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -14,3 +54,6 @@
   background-color: burlywood;
 }
 
+.hidden {
+  display: none
+}

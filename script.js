@@ -1,4 +1,16 @@
 let game = document.querySelector(".game")
+let start = document.querySelector(".startButton")
+let reset = document.querySelector(".resetGame")
+let title = document.querySelector(".titleScreen")
+let main = document.querySelector(".main")
+let left = document.querySelector(".left")
+let right = document.querySelector(".right")
+let play1Score = document.querySelector(".play1")
+let play2Score = document.querySelector(".play2")
+let turn = 0
+let round = 0
+let player1Score = 0
+let player2Score = 0
 let grid = new Map([
   ["tL", 0],
   ["tM", 0],
@@ -10,37 +22,76 @@ let grid = new Map([
   ["bM", 0],
   ["bR", 0],
 ])
-let turn = 0
+
+start.addEventListener("click", function () {
+  game.innerHTML = ""
+  boxMaker(grid)
+  title.classList.add("hidden")
+  main.classList.remove("hidden")
+})
+
+reset.addEventListener("click", function () {
+  turn = 0
+  round = 0
+  player1Score = 0
+  player2Score = 0
+  play1Score.innerText = player1Score
+  play2Score.innerText = player2Score
+  game.innerHTML = ""
+  boxMaker(grid)
+  title.classList.remove("hidden")
+  main.classList.add("hidden")
+})
+
+let nextRound = (map) => {
+  map.forEach(function (i, location) {
+    map.set(`${location}`, 0)
+    game.innerHTML = ""
+    turn = 0
+    round += 1
+    boxMaker(grid)
+  })
+}
 
 let winnerCheck = (map) => {
   if ((map.get("tL") === 1 && map.get("tM") === 1 && map.get("tR") === 1)
-  || (map.get("mL") === 1 && map.get("mM") === 1 && map.get("mR") === 1)
-  || (map.get("bL") === 1 && map.get("bM") === 1 && map.get("bR") === 1)
-  || (map.get("tL") === 1 && map.get("mL") === 1 && map.get("bL") === 1)
-  || (map.get("tM") === 1 && map.get("mM") === 1 && map.get("bM") === 1)
-  || (map.get("tR") === 1 && map.get("mR") === 1 && map.get("bR") === 1)
-  || (map.get("bL") === 1 && map.get("mM") === 1 && map.get("tR") === 1) ||
-  (map.get("mM") === 1 && map.get("tL") === 1 && map.get("bR") === 1)) {
-  console.log("Player 1 Wins")
+    || (map.get("mL") === 1 && map.get("mM") === 1 && map.get("mR") === 1)
+    || (map.get("bL") === 1 && map.get("bM") === 1 && map.get("bR") === 1)
+    || (map.get("tL") === 1 && map.get("mL") === 1 && map.get("bL") === 1)
+    || (map.get("tM") === 1 && map.get("mM") === 1 && map.get("bM") === 1)
+    || (map.get("tR") === 1 && map.get("mR") === 1 && map.get("bR") === 1)
+    || (map.get("bL") === 1 && map.get("mM") === 1 && map.get("tR") === 1) ||
+    (map.get("mM") === 1 && map.get("tL") === 1 && map.get("bR") === 1)) {
+    player1Score += 1
+    play1Score.innerText = player1Score
+    nextRound(map)
   }
   else if ((map.get("tL") === 2 && map.get("tM") === 2 && map.get("tR") === 2)
-  || (map.get("mL") === 2 && map.get("mM") === 2 && map.get("mR") === 2)
-  || (map.get("bL") === 2 && map.get("bM") === 2 && map.get("bR") === 2)
-  || (map.get("tL") === 2 && map.get("mL") === 2 && map.get("bL") === 2)
-  || (map.get("tM") === 2 && map.get("mM") === 2 && map.get("bM") === 2)
-  || (map.get("tR") === 2 && map.get("mR") === 2 && map.get("bR") === 2)
-  || (map.get("bL") === 2 && map.get("mM") === 2 && map.get("tR") === 2) ||
-  (map.get("mM") === 2 && map.get("tL") === 2 && map.get("bR") === 2)) {
-  console.log("Player 2 Wins")
-  }
+    || (map.get("mL") === 2 && map.get("mM") === 2 && map.get("mR") === 2)
+    || (map.get("bL") === 2 && map.get("bM") === 2 && map.get("bR") === 2)
+    || (map.get("tL") === 2 && map.get("mL") === 2 && map.get("bL") === 2)
+    || (map.get("tM") === 2 && map.get("mM") === 2 && map.get("bM") === 2)
+    || (map.get("tR") === 2 && map.get("mR") === 2 && map.get("bR") === 2)
+    || (map.get("bL") === 2 && map.get("mM") === 2 && map.get("tR") === 2) ||
+    (map.get("mM") === 2 && map.get("tL") === 2 && map.get("bR") === 2)) {
+    player2Score += 1
+    play2Score.innerText = player2Score
+    nextRound(map)
+  } else if ((map.get("tL") != 0 && map.get("tM") != 0 && map.get("tR") != 0 &&
+  map.get("mL") != 0 && map.get("mM") != 0 && map.get("mR") != 0 &&
+  map.get("bL") != 0 && map.get("bM") != 0 && map.get("bR") != 0)) {
+    nextRound(map)
+}
 }
 
 let boxMaker = (map) => {
+  //Create the 3x3 Grid
   map.forEach((i, location) => {
     let htmlTemplate = `
     <div class ="box ${location}">
     </div>`
     game.insertAdjacentHTML("beforeend", htmlTemplate)
+    //Make the box clickable
     let boxes = document.querySelectorAll(`.${location}`)
     boxes.forEach((box) => box.addEventListener("click", function () {
       if (turn % 2 == 0) {
@@ -61,7 +112,9 @@ let boxMaker = (map) => {
     }))
   })
 }
-boxMaker(grid)
+
+
+
 
 
 
