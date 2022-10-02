@@ -124,8 +124,3 @@ let boxMaker = (map) => {
   })
 }
 
-
-
-
-
-
